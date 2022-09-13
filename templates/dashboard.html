@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol Paneli</h3>
+
+<hr>
+<large>Hoşgeldin, {{session["username"]}}<large>
+<a href="/addmeals" class="btn btn-danger">Yemek Ekle</a>
+<br><br>
+{% if meals %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Yemek Adı</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Tarih</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for meal in meals %}
+      <tr>
+      <th scope="row">{{meal.id}}</th>
+      <td><a href="/meal/{{meal.id}}">{{meal.meal_name}}</a></td>
+      <td>{{meal.author}}</td>
+      <td>{{meal.created_date}}</td>
+      <td><a href="/edit/{{meal.id}}" class = "btn btn-danger">Güncelle</a></td>
+      <td><a href="/delete/{{meal.id}}" class = "btn btn-danger">Sil</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class = "alert alert-danger">Henüz yemeğiniz bulunmuyor...</div>
+{% endif %}
+
+{% endblock %}

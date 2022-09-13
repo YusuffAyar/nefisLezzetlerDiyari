@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% if meal %}
+
+<h4>{{meal.meal_name}}</h4>
+<hr>
+Yazar : {{meal.author}}
+<hr>
+Tarih : {{meal.created_date}}
+<hr>
+{{meal.content|safe}}
+
+{% else %}
+<div class = "alert alert-warning">
+    Böyle bir yemek tarifi bulunmuyor...
+</div>
+{% endif %}
+
+{% endblock body %}

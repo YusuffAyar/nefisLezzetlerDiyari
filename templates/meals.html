@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div align = "center">
+<h3>Yemek Tarifleri</h3>
+<form action="/search" method="post">
+  <input type="text" name="keyword" class="input-sm" maxlength="32" placeholder="Ara...">
+  <button type="submit" class="btn btn-danger">Ara</button>
+</form>
+</div>
+<br>
+{% if meals %}
+
+<ul class="list-group">
+  {% for meal in meals %}
+  <li class = "list-group-item"><a href="meal/{{meal.id}}"><div align ="center">{{meal.meal_name}}</div></a></li>
+  {% endfor %}
+</ul>
+
+{% else %}
+<div class = "alert alert-danger">Bu sayfada henüz yemek bulunmuyor.</div>
+
+{% endif %}
+
+{% endblock body %}
